@@ -25,11 +25,12 @@
 	
 	<?php include('server/server.php') ?>
 	<?php 
+		session_start();
 		if(isset($_SESSION['username'])){
 			// todo: delete the two rows below when the project is ready
-			session_destroy();
-    		unset($_SESSION['username']);
-			//header('Location:app.php'); // todo: uncomment when the project is ready
+			//session_destroy();
+    		//unset($_SESSION['username']);
+			header('Location:app/app.php'); // todo: uncomment when the project is ready
 		}
 	?>
     <div class="main">

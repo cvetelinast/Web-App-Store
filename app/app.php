@@ -16,20 +16,24 @@
 		</a>
 		<div class="container">
             <a>
-				<input type="submit" class="logout" name="logout" value="Logout">
+				<form action = "" method = "post">
+					<input type="submit" class="logout" name="logout" value="Logout">
+				</form>
 			</a>
         </div>
     </div>
-    
+
     <div class="main">
         <div class="wrapper" style="background-image: url(../images/background.jpg);">
         </div>
     </div>
 </body>
 
+<?php include('../server/server.php') ?>
+
 <?php
-	 if(!isset($_SESSION['username'])){
-	//	header('Location:../index.php');
-		// $_SESSION['username'] = "admin"; // todo: sometimes when there is a problem with coockies uncomment this row
-	 }
+	session_start();
+	if(!isset($_SESSION['username'])){
+		header('Location:../index.php');
+	}
 ?>

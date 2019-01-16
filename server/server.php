@@ -23,6 +23,7 @@ function login($conn){
 			$query->execute(array($user,$pass));
 		
 			if($query->rowCount() >= 1) {
+                session_start();
 				$_SESSION['username'] = $user;
                 $_SESSION['time_start_login'] = time();
 				header('Location:../app/app.php');
@@ -59,15 +60,17 @@ function register($conn){
                 $query = $conn->prepare($sql);
                 $query->execute(array($user,$email, $pass));
             
-                if($query->rowCount() >= 1) {
+                // TODO: check if the request is successful and response to user somehow
+
+               // if($query->rowCount() >= 1) {
                   //  Echo $query->rowCount() . ", " . $user . ", " . $email . ", " . "$pass";
-                    $_SESSION['username'] = $user;
-                    $_SESSION['time_start_login'] = time();
-                    header('Location:../app/app.php');
-                } else {
-                    $messeg = "Username/Email/Password is wrong";
-                    array_push($errors, $messeg);
-                }
+                 //   $_SESSION['username'] = $user;
+                 //   $_SESSION['time_start_login'] = time();
+                    header('Location:login.php');
+             //   } else {
+             //       $messeg = "Username/Email/Password is wrong";
+             //       array_push($errors, $messeg);
+             //   }
             }
         }
 		//	Echo $messeg;
@@ -75,12 +78,12 @@ function register($conn){
 
 function logout(){
   //  Echo "LOGOUT";
+    session_start();
     session_destroy();
-    unset($_SESSION['username']);
-    header('Location:..index.php');
+   // unset($_SESSION['username']);
+   header('Location:../index.php');
 }
 
-    session_start();
     $db = "mysql:host=localhost;dbname=web-app-store";
     $username = "root";
     $password = "";

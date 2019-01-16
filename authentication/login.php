@@ -29,6 +29,7 @@
 <?php include('../server/server.php') ?>
 <div class="main">
 	<form action = "" method = "post">
+	<?php include('../config/errors.php'); ?>
 		<div class="login">
 			<input type="text" placeholder="Username" id="username" name="username" required>  
 			<input type="password" placeholder="Password" id="password" name="password" required>  
@@ -36,6 +37,5 @@
 		</div>
 		<div class="shadow"></div>
 	</form>
-	<?php include('../config/errors.php'); ?>
 </div>
 </body>

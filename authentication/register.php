@@ -30,6 +30,7 @@
 
 <div class="main">
 	<form action = "" method = "post">
+	<?php include('../config/errors.php'); ?>
 		<div class="register">
 			<input type="text" placeholder="Username" id="username" name="username" required>
 			<input type="email" placeholder="E-mail" id="email" name="email" required> 
@@ -39,6 +40,5 @@
 		</div>
 		<div class="shadow"></div>
 	</form>
-	<?php include('../config/errors.php'); ?>
 </div>
 </body>

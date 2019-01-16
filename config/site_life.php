@@ -2,7 +2,7 @@
 
 <?php
     session_start();
-    if(isset($_SESSION['user'])){
+    if(isset($_SESSION['username'])){
         if((time() - $_SESSION['time_start_login']) > 3600){
             header("location: ../logout.php");
         } else {
