@@ -84,6 +84,10 @@ function logout(){
    header('Location:../index.php');
 }
 
+function addApp(){
+    header('Location:newApp.php');
+}
+
     $db = "mysql:host=localhost;dbname=web-app-store";
     $username = "root";
     $password = "";
@@ -110,5 +114,9 @@ function logout(){
     
     if(isset($_POST['logout'])){
       logout();
+    }
+
+    if(isset($_POST['add_app'])){
+      addApp();
     }
 ?>

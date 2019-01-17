@@ -2,3 +2,20 @@
     float: right;
     padding: 5%;
   }
+
+  .add_app {
+    width:50%;
+  }
+
+  .containerUploading {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding-left: 40%;
+  }
+
+  .child, h2 {
+    align-self: flex-start;
+    margin: 3%;
+    width: 100%;
+  }

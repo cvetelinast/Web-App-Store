@@ -26,6 +26,11 @@
     <div class="main">
         <div class="wrapper" style="background-image: url(../images/background.jpg);">
         </div>
+		<div class="container">
+				<form action = "" method = "post">
+					<input type="submit" class="add_app" name="add_app" value="Add application">
+				</form>
+        </div>
     </div>
 </body>
 
