@@ -28,32 +28,34 @@
             <div class="containerUploading">
                 <h2>Upload application:</h2>
                 <a class="child">
-                    <p> Add image/logo: <input type="file" name="imageToUpload" id="imageToUpload" required></p>
+                    <p> Name of the app: </p>
+                    <input type="text" id="appName" name="appName" required>
                 </a>
 
                 <a class="child">
-                    <p> Name of the app: <input type="text" placeholder="Camera App" id="appName" name="appName" required></p>
+                    <p> Description of the app: </p>
+                    <textarea rows="4" cols="50" id="appDescription" name="appDescription" required></textarea>
                 </a>
 
                 <a class="child">
-                    <p> Description of the app:  <input type="textarea" placeholder="Description" id="appDescription" name="appDescription" required></p>
+                    <p> Add image/logo: </p>
+                    <input type="file" name="imageToUpload" id="imageToUpload" required>
                 </a>
 
                 <a class="child">
-                    <p> Add your app: <input type="file" name="appToUpload" id="appToUpload" required></p>
+                    <p> Add your app: </p>
+                    <input type="file" name="appToUpload" id="appToUpload" required>
                 </a>
                 <a class="child">
                     <input type="submit" value="Upload" name="upload">
                 </a>
             </div>
         </form>
-        <?php include ('../server/upload.php') ?>
     </div>
 </body>
 
-<?php include('../server/server.php') ?>
-
 <?php
+    include('../server/server.php');
 	session_start();
 	if(!isset($_SESSION['username'])){
 		header('Location:../index.php');

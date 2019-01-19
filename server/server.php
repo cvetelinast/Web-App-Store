@@ -1,4 +1,7 @@
 <?php
+include_once 'database/dao/UserDao.php';
+include_once 'database/dao/ApplicationDao.php';
+include_once 'database/dao/ReviewDao.php';
 
 function redirrectIfLoggedIn(){
     if(isset($_SESSION['username'])){
@@ -6,117 +9,114 @@ function redirrectIfLoggedIn(){
 	}
 }
 
-function login($conn){
+function login($userDao){
     $errors = array();
-		$user = $_POST['username'];
-		$pass = md5($_POST['password']);
-		$messeg = "";
+	$username = $_POST['username'];
+	$password = md5($_POST['password']);
 
-		// Echo "login clicked, username is " . $user . ", password is " . $pass;
-	
-		if(empty($user) || empty($pass)) {
-            $messeg = "Username/Password can't be empty";
-            array_push($errors, $messeg);
-		} else {
-			$sql = "SELECT username, password FROM users WHERE username=? AND password=? ";
-			$query = $conn->prepare($sql);
-			$query->execute(array($user,$pass));
-		
-			if($query->rowCount() >= 1) {
-                session_start();
-				$_SESSION['username'] = $user;
-                $_SESSION['time_start_login'] = time();
-				header('Location:../app/app.php');
-			} else {
-                $messeg = "Username/Password is wrong";
-                array_push($errors, $messeg);
-			}
-		//	Echo $messeg;
-		}
+	if(empty($username) || empty($password)) {
+        $message= "Username/Password can't be empty.";
+        array_push($errors, $message);
+        return;
+    }
+
+    $userExists = $userDao->checkIfUserExists(array($username,$password));
+    if($userExists){
+        session_start();
+		$_SESSION['username'] = $username;
+        $_SESSION['time_start_login'] = time();
+		header('Location:../app/app.php');
+    }
+
+    $message = "Username/Password is wrong.";
+    array_push($errors, $message);
 }
 
-function register($conn){
+function register($userDao){
     $errors = array();
-        if($_POST['password'] !== $_POST['repeat_password']){
-            $messeg = "Password is not repeated correctly.";
-            array_push($errors, $messeg);
+    if($_POST['password'] !== $_POST['repeat_password']){
+        $message = "Password is not repeated correctly.";
+        array_push($errors, $message);
+        return;
+    }
 
-        } else {
-            $user = $_POST['username'];
-            $email = $_POST['email'];
-            $pass = md5($_POST['password']);
-            $messeg = "";
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
 
-            //	Echo "login clicked, username is " . $user . ", password is " . $pass;
-        
-            if(empty($user) || empty($email) || empty($pass)) {
-                $messeg = "Username/Email/Password can't be empty";
-                array_push($errors, $messeg);
-            } else {
+    if(empty($username) || empty($password)) {
+        $message = "Username/Email/Password can't be empty.";
+        array_push($errors, $message);
+        return;
+    }
 
-                // TODO: check if the user already exists; now we can add existing users also
+    $userExists = $userDao->checkIfUserExistsByName($username);
+    if($userExists){
+        $message = "User already exists.";
+        array_push($errors, $message);
+        return;
+    }
 
-                $sql = "INSERT INTO users (username, email, password) VALUES (?,?,?)";
-                $query = $conn->prepare($sql);
-                $query->execute(array($user,$email, $pass));
-            
-                // TODO: check if the request is successful and response to user somehow
-
-               // if($query->rowCount() >= 1) {
-                  //  Echo $query->rowCount() . ", " . $user . ", " . $email . ", " . "$pass";
-                 //   $_SESSION['username'] = $user;
-                 //   $_SESSION['time_start_login'] = time();
-                    header('Location:login.php');
-             //   } else {
-             //       $messeg = "Username/Email/Password is wrong";
-             //       array_push($errors, $messeg);
-             //   }
-            }
-        }
-		//	Echo $messeg;
+    $userDao->addUser(array($username, $password));
+    header('Location:login.php');
 }
 
 function logout(){
-  //  Echo "LOGOUT";
     session_start();
     session_destroy();
-   // unset($_SESSION['username']);
-   header('Location:../index.php');
+    header('Location:../index.php');
 }
 
 function addApp(){
-    header('Location:newApp.php');
+    header('Location:addApplication.php');
 }
 
-    $db = "mysql:host=localhost;dbname=web-app-store";
-    $username = "root";
-    $password = "";
-    $options = array(
-        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-    );
+function getApplications(){
+    global $applicationDao;
+    $result = $applicationDao->getAllApplications();
+    return $result;
+}
 
-    try{
-        $conn = new PDO($db,$username,$password,$options);
-    } catch (PDOException $e){
-        echo "Error!".$e->getMessage();
-    }
+function addApplication(){
+    global $applicationDao;
+    $appName = $_POST['appName'];
+    $appDescription = $_POST['appDescription'];
+    $imageToUpload = file_get_contents($_FILES["imageToUpload"]["tmp_name"]);
+    $appToUpload = file_get_contents($_FILES["appToUpload"]["tmp_name"]);
 
-    $errors = array();
-    redirrectIfLoggedIn();
-
-	if(isset($_POST['login'])){
-        login($conn);
-    }
-    
-	if(isset($_POST['register'])){
-        register($conn);
-    }
-    
-    if(isset($_POST['logout'])){
-      logout();
+    if(empty($appName) || empty($appDescription) || empty($imageToUpload) || empty($appToUpload)) {
+        $message= "Incorrect input data.";
+        array_push($errors, $message);
+        return;
     }
 
-    if(isset($_POST['add_app'])){
-      addApp();
-    }
+    $applicationDao->createApplication($appName, $appDescription, $imageToUpload, $appToUpload);
+
+}
+
+$userDao = new UserDao();
+$applicationDao = new ApplicationDao();
+$reviewDao = new ReviewDao();
+
+$errors = array();
+redirrectIfLoggedIn();
+
+if(isset($_POST['login'])){
+    login($userDao);
+}
+
+if(isset($_POST['register'])){
+    register($userDao);
+}
+
+if(isset($_POST['logout'])){
+    logout();
+}
+
+if(isset($_POST['add_app'])){
+    addApp();
+}
+
+if(isset($_POST['upload'])){
+    addApplication();
+}
 ?>

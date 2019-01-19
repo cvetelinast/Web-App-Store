@@ -6,7 +6,6 @@
 	<title>Web App Store </title>
 	<link type="text/css" href="../css/styles.css" rel="stylesheet">
 	<link type="text/css" href="../css/app_styles.css" rel="stylesheet">
-	<link type="text/css" href="../css/app_list_styles.css" rel="stylesheet">
 	<link rel="icon" href="../images/icon.png">
 </head>
 <body>
@@ -27,28 +26,13 @@
     <div class="main">
         <div class="wrapper" style="background-image: url(../images/background.jpg);">
         </div>
-		<div class="containerListApps">
-				<form action = "" method = "post">
-					<input type="submit" class="add_app" name="add_app" value="Add application">
-				</form>
-				<h2>Applications:</h2>
-				<table class="table" border = '2'>
-					<?php
-						include('../server/server.php');
-						session_start();
-						if(!isset($_SESSION['username'])){
-							header('Location:../index.php');
-						}
-
-						$result = getApplications();
-						foreach($result as $item) {
-							echo "<tr>";
-							$url = "application.php?id=".$item['ID'];
-							echo "<td><a href=".$url.">".$item['NAME']."</a></td>";
-							echo "</tr>";
-						}
-					?>
-				</table>
-        </div>
     </div>
+    <div class="containerApplication">
+        <h2>Upload application:</h2>
+    </div>
+
+		<?php
+            include('../server/server.php');
+			Echo $_GET['id'];
+		?>
 </body>

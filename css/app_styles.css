@@ -3,11 +3,7 @@
     padding: 5%;
   }
 
-  .add_app {
-    width:50%;
-  }
-
-  .containerUploading {
+  .containerUploading, .containerApplication {
     display: flex;
     flex-direction: column;
     width: 50%;

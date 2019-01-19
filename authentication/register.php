@@ -33,7 +33,6 @@
 	<?php include('../config/errors.php'); ?>
 		<div class="register">
 			<input type="text" placeholder="Username" id="username" name="username" required>
-			<input type="email" placeholder="E-mail" id="email" name="email" required> 
 			<input type="password" placeholder="Password" id="password" name="password" required>
 			<input type="password" placeholder="Repeat password" id="repeat_password" name="repeat_password" required>
 			<input type="submit" name="register" value="Register">
