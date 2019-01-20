@@ -13,7 +13,7 @@
 
 	<div class="navbar navbar-fixed-top">
         <a class="title">
-			Web Apps Store
+			Web App Store
 		</a>
 		<div class="container">
             <a>
@@ -28,10 +28,12 @@
         <div class="wrapper" style="background-image: url(../images/background.jpg);">
         </div>
 		<div class="containerListApps">
-				<form action = "" method = "post">
-					<input type="submit" class="add_app" name="add_app" value="Add application">
-				</form>
-				<h2>Applications:</h2>
+				<div class="top_controls">
+					<form action = "" method = "post">
+						<input type="submit" class="add_app" name="add_app" value="Add application">
+					</form>
+					<h1>Applications:</h1>
+				</div>
 				<?php
 					include('../server/server.php');
 					session_start();
@@ -49,7 +51,7 @@
 						"<div class='responsive'>".
 							"<div class='gallery'>".
 								"<a target='_blank' href='application.php?id=$id'>".
-									"<img src='data:image/jpg;base64,$logoBase64'>" .
+									"<img class='cardImage' src='data:image/jpg;base64,$logoBase64'>" .
 								"</a>".
 								"<div class='desc'>". $item['NAME'] ."</div>".
 							"</div>".

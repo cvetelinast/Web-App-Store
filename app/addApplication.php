@@ -12,7 +12,7 @@
 
 	<div class="navbar navbar-fixed-top">
         <a class="title">
-			Web Apps Store
+			Web App Store
 		</a>
 		<div class="container">
             <a>

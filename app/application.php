@@ -5,14 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Web App Store </title>
 	<link type="text/css" href="../css/styles.css" rel="stylesheet">
-	<link type="text/css" href="../css/app_styles.css" rel="stylesheet">
+	<link type="text/css" href="../css/app_details_styles.css" rel="stylesheet">
 	<link rel="icon" href="../images/icon.png">
 </head>
 <body>
 
 	<div class="navbar navbar-fixed-top">
         <a class="title">
-			Web Apps Store
+			Web App Store
 		</a>
 		<div class="container">
             <a>
@@ -24,9 +24,7 @@
     </div>
 
     <div class="main">
-        <div class="wrapper" style="background-image: url(../images/background.jpg);">
-        </div>
-    	<div class="containerApplication">
+    	<div class="application_container">
 			<?php
 				include('../server/server.php');
 				$application = getApplication($_GET['id']);
@@ -52,13 +50,13 @@
 				echo $result;
 			?>
 		</div>
-
+		
 		<div class="reviews_container">
 			<h2>Add review:</h2>
 			<form action="" method="post" enctype="multipart/form-data">
 				<div class="containerUploading">
 					<a class="child">
-						<p>Evaluate app quality from 2 to 6:</p>
+						<p>Evaluate the app quality from 2 to 6:</p>
 						<select name="score">
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -82,6 +80,7 @@
 					?>
 				</div>
 			</form>
+			<hr>
 			<h2>Reviews:</h2>
 				<div class="containerUploading">
 					<?php
@@ -112,7 +111,7 @@
 								$stars.="&#9733";
 							}
 						}
-						echo "<p>Average score: $averageScore $stars";
+						echo "<div class='average'>Average score: $averageScore $stars </div>";
 						echo $result;
 					?>
 				</div>
