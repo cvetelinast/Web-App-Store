@@ -28,11 +28,32 @@
         </div>
     </div>
     <div class="containerApplication">
-        <h2>Upload application:</h2>
+		<?php
+			include('../server/server.php');
+			$application = getApplication($_GET['id']);
+
+			$id = $application['ID'];
+			$name = $application['NAME'];
+			$description = $application['DESCRIPTION'];
+			$logo = $application['LOGO'];
+			$logoBase64   = base64_encode($logo);
+			$source = $application['SOURCE'];
+
+			$result =  "<a class='childApplicationDetails'>" .
+			"<img src=data:image/jpg;base64,".$logoBase64.">" .
+			"</a>".
+			"<a class='childApplicationDetails'>" .
+			"<h1>" .$name . "</h1>".
+			"<p>" .$description . "</p>".
+			"<form action = 'download.php' method = 'get'>".
+			"<button type='submit' class='download' name='id' value='$id'>Download</button>".
+			"</form>".
+			"</a>";
+			
+			echo $result;
+
+		?>
     </div>
 
-		<?php
-            include('../server/server.php');
-			Echo $_GET['id'];
-		?>
+	
 </body>

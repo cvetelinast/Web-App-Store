@@ -26,5 +26,14 @@ class ApplicationDao {
         $id = md5(uniqid());
         $statement->execute(array($appName, $appDescription, $imageToUpload, $appToUpload, $id));
     }
+
+    public function getApplicationById($id){
+        $query = "select * from `APPLICATIONS` where ID = ?";
+        $statement = $this->connection->prepare($query);
+        $statement->execute(array($id));
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
 }
 ?>

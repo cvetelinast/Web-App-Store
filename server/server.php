@@ -93,6 +93,12 @@ function addApplication(){
 
 }
 
+function getApplication($id){
+    global $applicationDao;
+    $application = $applicationDao->getApplicationById($id);
+    return $application;
+}
+
 $userDao = new UserDao();
 $applicationDao = new ApplicationDao();
 $reviewDao = new ReviewDao();
@@ -119,4 +125,5 @@ if(isset($_POST['add_app'])){
 if(isset($_POST['upload'])){
     addApplication();
 }
+
 ?>

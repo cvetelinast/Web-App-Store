@@ -32,23 +32,32 @@
 					<input type="submit" class="add_app" name="add_app" value="Add application">
 				</form>
 				<h2>Applications:</h2>
-				<table class="table" border = '2'>
-					<?php
-						include('../server/server.php');
-						session_start();
-						if(!isset($_SESSION['username'])){
-							header('Location:../index.php');
-						}
+				<?php
+					include('../server/server.php');
+					session_start();
+					if(!isset($_SESSION['username'])){
+						header('Location:../index.php');
+					}
 
-						$result = getApplications();
-						foreach($result as $item) {
-							echo "<tr>";
-							$url = "application.php?id=".$item['ID'];
-							echo "<td><a href=".$url.">".$item['NAME']."</a></td>";
-							echo "</tr>";
-						}
-					?>
-				</table>
+					$result = getApplications();
+					foreach($result as $item) {
+						$id = $item['ID'];
+						$logo = $item['LOGO'];
+						$logoBase64   = base64_encode($logo);
+
+						$result =
+						"<div class='responsive'>".
+							"<div class='gallery'>".
+								"<a target='_blank' href='application.php?id=$id'>".
+									"<img src='data:image/jpg;base64,$logoBase64'>" .
+								"</a>".
+								"<div class='desc'>". $item['NAME'] ."</div>".
+							"</div>".
+						"</div>";
+						echo $result;
+					}
+					echo "<div class='clearfix'></div>";
+				?>
         </div>
     </div>
 </body>
