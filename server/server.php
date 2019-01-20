@@ -90,13 +90,40 @@ function addApplication(){
     }
 
     $applicationDao->createApplication($appName, $appDescription, $imageToUpload, $appToUpload);
+    header('Location:../app/app.php');
+}
 
+function addReview(){
+    global $reviewDao;
+    $score = $_POST['score'];
+    $comment = $_POST['comment'];
+    $applicationId = $_POST['add_review_for_application'];
+
+    session_start();
+    if(!isSet($_SESSION['username'])){
+        return;
+    }
+
+    $reviewerName = $_SESSION['username'];
+    if(empty($score) || empty($comment) || empty($applicationId) || empty($reviewerName)){
+        $message= "Incorrect input data.";
+        array_push($errors, $message);
+        return;
+    }
+
+    $reviewDao->addReview($score, $comment, $reviewerName, $applicationId);
 }
 
 function getApplication($id){
     global $applicationDao;
     $application = $applicationDao->getApplicationById($id);
     return $application;
+}
+
+function getReviewsForApplication($applicationId){
+    global $reviewDao;
+    $reviews = $reviewDao->getReviewsForApplication($applicationId);
+    return $reviews;
 }
 
 $userDao = new UserDao();
@@ -124,6 +151,10 @@ if(isset($_POST['add_app'])){
 
 if(isset($_POST['upload'])){
     addApplication();
+}
+
+if(isset($_POST['add_review_for_application'])){
+    addReview();
 }
 
 ?>

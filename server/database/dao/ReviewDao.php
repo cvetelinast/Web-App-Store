@@ -15,13 +15,13 @@ class ReviewDao {
         $query = "insert into `REVIEWS` values (?,?,?,?,?)";
         $statement = $this->connection->prepare($query);
         $id = md5(uniqid());
-        $statement->execute(array($score, $comment, $reviewerName, $id, $applicationId));
+        $statement->execute(array($score, $comment, $id, $reviewerName, $applicationId));
     }
 
     public function getReviewsForApplication($applicationId){
         $query = "select SCORE, COMMENT, REVIEWER_NAME FROM `REVIEWS` WHERE APPLICATION_ID=? ";
         $statement = $this->connection->prepare($query);
-        $statement->execute($applicationId);
+        $statement->execute(array($applicationId));
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $results;

@@ -26,6 +26,7 @@ create table if not exists `REVIEWS` (
   `SCORE` int not null,
   `COMMENT` varchar(255),
   `ID` varchar(32) not null,
+  `REVIEWER_NAME` varchar(32) not null,
   `APPLICATION_ID` varchar(32) not null,
   primary key `ID` (`ID`),
   foreign key (`APPLICATION_ID`) references `APPLICATIONS`(`ID`) ON DELETE CASCADE

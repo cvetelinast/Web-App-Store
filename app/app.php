@@ -45,7 +45,7 @@
 						$logo = $item['LOGO'];
 						$logoBase64   = base64_encode($logo);
 
-						$result =
+						$output =
 						"<div class='responsive'>".
 							"<div class='gallery'>".
 								"<a target='_blank' href='application.php?id=$id'>".
@@ -54,7 +54,7 @@
 								"<div class='desc'>". $item['NAME'] ."</div>".
 							"</div>".
 						"</div>";
-						echo $result;
+						echo $output;
 					}
 					echo "<div class='clearfix'></div>";
 				?>
