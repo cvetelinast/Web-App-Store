@@ -14,17 +14,15 @@
         <a class="title">
 			Web App Store
 		</a>
-		<div class="container">
-            <a>
-				<form action = "" method = "post">
-					<input type="submit" class="logout" name="logout" value="Logout">
-				</form>
-			</a>
+		<div class="logout_container">
+			<form action = "" method = "post">
+				<input type="submit" class="logout" name="logout" value="Logout">
+			</form>
         </div>
     </div>
 
     <div class="main">
-    	<div class="application_container">
+    	<div class="application_container shadow">
 			<?php
 				include('../server/server.php');
 				$application = getApplication($_GET['id']);
@@ -52,11 +50,11 @@
 		</div>
 		
 		<div class="reviews_container">
-			<h2>Add review:</h2>
 			<form action="" method="post" enctype="multipart/form-data">
-				<div class="containerUploading">
+				<div class="containerUploading shadow">
+				<h2>Add review:</h2>
 					<a class="child">
-						<p>Evaluate the app quality from 2 to 6:</p>
+						<p><b>Evaluate the app quality from 2 to 6:</b></p>
 						<select name="score">
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -66,7 +64,7 @@
 						</select>
 					</a>
 					<a class="child">
-						<p>Add comment:</p>
+						<p><b>Add comment:</b></p>
 						<textarea rows="4" cols="50" id="comment" name="comment" required></textarea>
 					</a>
 					<?php
@@ -80,9 +78,8 @@
 					?>
 				</div>
 			</form>
-			<hr>
-			<h2>Reviews:</h2>
-				<div class="containerUploading">
+				<div class="containerUploading shadow">
+				<h2>Reviews:</h2>
 					<?php
 						$sumOfScores = 0;
 						$result = "";
@@ -96,6 +93,7 @@
 							$sumOfScores += $score;
 
 							$result.=
+							"<hr>".
 							"<a class='child'>".
 							"<p><b>Reviewer:</b> $reviewerName</p>".
 							"<p><b>Score:</b> $score</p>".

@@ -11,43 +11,44 @@
 <body>
 
 	<div class="navbar navbar-fixed-top">
+        <div>
         <a class="title">
 			Web App Store
 		</a>
-		<div class="container">
-            <a>
-				<form action = "" method = "post">
-					<input type="submit" class="logout" name="logout" value="Logout">
-				</form>
-			</a>
+		<div class="logout_container">
+            <form action = "" method = "post">
+                <input type="submit" class="logout" name="logout" value="Logout">
+            </form>
         </div>
+</div>
     </div>
   
     <div class="main">
         <form action="" method="post" enctype="multipart/form-data">
-            <div class="containerUploading">
+            <div class="containerUploading shadow">
                 <h2>Upload application:</h2>
+                <hr>
                 <a class="child">
-                    <p> Name of the app: </p>
+                    <p><b>Name of the app:</b></p>
                     <input type="text" id="appName" name="appName" required>
                 </a>
 
                 <a class="child">
-                    <p> Description of the app: </p>
-                    <textarea rows="4" cols="50" id="appDescription" name="appDescription" required></textarea>
+                    <p><b>Description of the app:</b></p>
+                    <textarea rows="4" id="appDescription" name="appDescription" required></textarea>
                 </a>
 
                 <a class="child">
-                    <p> Add image/logo: </p>
+                    <p><b>Add image/logo:</b></p>
                     <input type="file" name="imageToUpload" id="imageToUpload" required>
                 </a>
 
                 <a class="child">
-                    <p> Add your app: </p>
+                    <p><b>Add your app:</b></p>
                     <input type="file" name="appToUpload" id="appToUpload" required>
                 </a>
                 <a class="child">
-                    <input type="submit" value="Upload" name="upload">
+                    <input type="submit" value="Upload" name="upload" class="upload">
                 </a>
             </div>
         </form>

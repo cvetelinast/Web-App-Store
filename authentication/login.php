@@ -26,7 +26,13 @@
 		</div>
 </div>
 
-<?php include('../server/server.php') ?>
+<?php 
+	include('../server/server.php');
+	session_start();
+	if(isset($_SESSION['username'])){
+		header('Location:../app/app.php');
+	}
+?>
 <div class="main">
 	<form action = "" method = "post">
 	<?php include('../config/errors.php'); ?>

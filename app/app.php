@@ -5,7 +5,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Web App Store </title>
 	<link type="text/css" href="../css/styles.css" rel="stylesheet">
-	<link type="text/css" href="../css/app_styles.css" rel="stylesheet">
 	<link type="text/css" href="../css/app_list_styles.css" rel="stylesheet">
 	<link rel="icon" href="../images/icon.png">
 </head>
@@ -15,12 +14,10 @@
         <a class="title">
 			Web App Store
 		</a>
-		<div class="container">
-            <a>
-				<form action = "" method = "post">
-					<input type="submit" class="logout" name="logout" value="Logout">
-				</form>
-			</a>
+		<div class="logout_container">
+			<form action = "" method = "post">
+				<input type="submit" class="logout" name="logout" value="Logout">
+			</form>
         </div>
     </div>
 
@@ -42,23 +39,25 @@
 					}
 
 					$result = getApplications();
+					$output = "<ul class='container_gallery'>";
+					
 					foreach($result as $item) {
 						$id = $item['ID'];
 						$logo = $item['LOGO'];
 						$logoBase64   = base64_encode($logo);
 
-						$output =
+						$output.=
 						"<div class='responsive'>".
 							"<div class='gallery'>".
-								"<a target='_blank' href='application.php?id=$id'>".
+								"<a target='' href='application.php?id=$id'>".
 									"<img class='cardImage' src='data:image/jpg;base64,$logoBase64'>" .
 								"</a>".
 								"<div class='desc'>". $item['NAME'] ."</div>".
 							"</div>".
 						"</div>";
-						echo $output;
 					}
-					echo "<div class='clearfix'></div>";
+					$output .= "</ul>";
+					echo $output;
 				?>
         </div>
     </div>
