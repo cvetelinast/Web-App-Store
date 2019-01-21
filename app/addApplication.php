@@ -12,20 +12,27 @@
 
 	<div class="navbar navbar-fixed-top">
         <div>
-        <a class="title">
-			Web App Store
-		</a>
-		<div class="logout_container">
-            <form action = "" method = "post">
-                <input type="submit" class="logout" name="logout" value="Logout">
-            </form>
+            <a class="title">
+                Web App Store
+            </a>
+            <div class="logout_container">
+                <form action = "" method = "post">
+                    <input type="submit" class="logout" name="logout" value="Logout">
+                </form>
+            </div>
         </div>
-</div>
     </div>
-  
+    <?php
+        include('../server/server.php');
+        session_start();
+        if(!isset($_SESSION['username'])){
+            header('Location:../index.php');
+        }
+    ?>
     <div class="main">
         <form action="" method="post" enctype="multipart/form-data">
             <div class="containerUploading shadow">
+            <?php include('../config/errors.php'); ?>
                 <h2>Upload application:</h2>
                 <hr>
                 <a class="child">
@@ -54,11 +61,3 @@
         </form>
     </div>
 </body>
-
-<?php
-    include('../server/server.php');
-	session_start();
-	if(!isset($_SESSION['username'])){
-		header('Location:../index.php');
-	}
-?>

@@ -53,6 +53,7 @@
 			<form action="" method="post" enctype="multipart/form-data">
 				<div class="containerUploading shadow">
 				<h2>Add review:</h2>
+				<?php include('../config/errors.php'); ?>
 					<a class="child">
 						<p><b>Evaluate the app quality from 2 to 6:</b></p>
 						<select name="score">

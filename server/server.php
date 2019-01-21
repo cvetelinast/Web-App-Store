@@ -10,7 +10,7 @@ function redirrectIfLoggedIn(){
 }
 
 function login($userDao){
-    $errors = array();
+    global $errors;
 	$username = $_POST['username'];
 	$password = md5($_POST['password']);
 
@@ -33,7 +33,7 @@ function login($userDao){
 }
 
 function register($userDao){
-    $errors = array();
+    global $errors;
     if($_POST['password'] !== $_POST['repeat_password']){
         $message = "Password is not repeated correctly.";
         array_push($errors, $message);
@@ -77,6 +77,7 @@ function getApplications(){
 }
 
 function addApplication(){
+    global $errors;
     global $applicationDao;
     $appName = $_POST['appName'];
     $appDescription = $_POST['appDescription'];
@@ -94,6 +95,7 @@ function addApplication(){
 }
 
 function addReview(){
+    global $errors;
     global $reviewDao;
     $score = $_POST['score'];
     $comment = $_POST['comment'];

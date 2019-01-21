@@ -54,14 +54,13 @@ body {
   }
 
   .error {
-    margin-top: 120px;
-    width: 92%;
-    padding: 10px; 
-    border: 1px solid #a94442; 
-    color: #a94442; 
-    background: #f2dede; 
-    border-radius: 5px; 
-    text-align: left;
+    width: 50%;
+    border: 1px solid #a94442;
+    color: #a94442;
+    background: #f2dede;
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
   }
 
   .shadow {
