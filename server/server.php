@@ -2,10 +2,11 @@
 include_once 'database/dao/UserDao.php';
 include_once 'database/dao/ApplicationDao.php';
 include_once 'database/dao/ReviewDao.php';
+$timeout_duration = 180;
 
 function redirrectIfLoggedIn(){
     if(isset($_SESSION['username'])){
-		header('Location:../app/app.php');
+		header('Location:../app/applications.php');
 	}
 }
 
@@ -24,8 +25,8 @@ function login($userDao){
     if($userExists){
         session_start();
 		$_SESSION['username'] = $username;
-        $_SESSION['time_start_login'] = time();
-		header('Location:../app/app.php');
+        $_SESSION['last_activity'] = time();
+		header('Location:../app/applications.php');
     }
 
     $message = "Username/Password is wrong.";
@@ -91,7 +92,7 @@ function addApplication(){
     }
 
     $applicationDao->createApplication($appName, $appDescription, $imageToUpload, $appToUpload);
-    header('Location:../app/app.php');
+    header('Location:../app/applications.php');
 }
 
 function addReview(){

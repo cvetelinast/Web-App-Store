@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta charset=utf-8>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Web App Store </title>
@@ -11,8 +12,8 @@
 <body>
 
 	<div class="navbar navbar-fixed-top">
-        <a class="title">
-			Web App Store
+		<a class="title" target='' href='../app/applications.php'>
+			<img class='logo' src='../images/logo.png'>
 		</a>
 		<div class="logout_container">
 			<form action = "" method = "post">
@@ -37,6 +38,14 @@
 					if(!isset($_SESSION['username'])){
 						header('Location:../index.php');
 					}
+					if (isset($_SESSION['last_activity']) && 
+						(time() - $_SESSION['last_activity']) > $timeout_duration) {
+						session_unset();
+						session_destroy();
+						session_start();
+						header('Location:../index.php');
+					}
+					$_SESSION['last_activity'] = time();
 
 					$result = getApplications();
 					$output = "<ul class='container_gallery'>";

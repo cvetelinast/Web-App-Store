@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta charset=utf-8>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Web App Store</title>
@@ -11,9 +12,9 @@
 <body>
 
 <div class="navbar navbar-fixed-top">
-        <a class="title">
-			Web Apps Store
-        </a>
+		<a class="title" target='' href='../app/applications.php'>
+			<img class='logo' src='../images/logo.png'>
+		</a>
 		<div class="container">
             <a href="login.php">
 				Login
@@ -30,7 +31,7 @@
 	include('../server/server.php');
 	session_start();
 	if(isset($_SESSION['username'])){
-		header('Location:../app/app.php');
+		header('Location:../app/applications.php');
 	} 
 ?>
 

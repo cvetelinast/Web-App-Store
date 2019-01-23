@@ -8,7 +8,6 @@ drop table if exists `REVIEWS`;
 
 create table if not exists `USERS` (
   `USERNAME` varchar(32) not null,
-  `EMAIL` varchar(32) not null,
   `PASSWORD` varchar(32) not null,
   primary key `USERNAME` (`USERNAME`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -32,4 +31,3 @@ create table if not exists `REVIEWS` (
   foreign key (`APPLICATION_ID`) references `APPLICATIONS`(`ID`) ON DELETE CASCADE
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-insert into `USERS` values ("admin", "admin@abv.bg", "21232f297a57a5a743894a0e4a801fc3")

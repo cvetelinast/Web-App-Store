@@ -17,7 +17,7 @@ body {
 /* The navigation bar */
 .navbar {
     overflow: hidden;
-    background-color: #333;
+    background-color: black;
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
@@ -90,6 +90,10 @@ body {
   .logout:hover {
     border: 1px solid #777;
     box-shadow: 0 8px 16px 0 rgba(114, 225, 240, 0.589);
+  }
+
+  .logo {
+    height: 100%;
   }
 
 

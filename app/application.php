@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta charset=utf-8>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Web App Store </title>
@@ -11,8 +12,8 @@
 <body>
 
 	<div class="navbar navbar-fixed-top">
-        <a class="title">
-			Web App Store
+		<a class="title" target='' href='../app/applications.php'>
+			<img class='logo' src='../images/logo.png'>
 		</a>
 		<div class="logout_container">
 			<form action = "" method = "post">
@@ -35,7 +36,7 @@
 				$source = $application['SOURCE'];
 
 				$result =  "<a class='childApplicationDetails'>" .
-				"<img src=data:image/jpg;base64,".$logoBase64.">" .
+				"<img class='icon' src=data:image/jpg;base64,".$logoBase64.">" .
 				"</a>".
 				"<a class='childApplicationDetails'>" .
 				"<h1>" .$name . "</h1>".
